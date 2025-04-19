@@ -1,94 +1,198 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Scientific Calculator </title>
+        <title>Scientific Calculator</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"
-        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+        <style>
+            .calculator-btn {
+                height: 60px;
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+            .equals-btn {
+                background-color: #0d6efd;
+                color: white;
+            }
+            .clear-btn {
+                background-color: #dc3545;
+                color: white;
+            }
+            .operator-btn {
+                background-color:bisque;
+                color: white;
+            }
+            .function-btn {
+                background-color:chocolate;
+                color: white;
+            }
+            #calc-display {
+                font-size: 2rem;
+                height: 80px;
+            }
+        </style>
     </head>
     <body>
-         
-         <div class="Container">
-            <h1 class="text-center mt-3">Scientific Calculator </h1>
-            <div class="row border">
-            </div>
-            <div class="col-12 offset-md-3 col-md-6 ">
-                <div class="card">
-                    <div class="card-body">
-                        <input  
-                        id="cal-display"
-                        readonly 
-                        class="form-control form-control-lg" type="text"  aria-label=".form-control-lg example">
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Scientific Calculator</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <input id="calc-display" readonly class="form-control form-control-lg text-end mb-3" type="text">
+                            <div class="row g-2">
+                                <!-- Scientific Functions Row -->
+                                <div class="col-3">
+                                    <button class="calculator-btn btn function-btn w-100" onclick="appendToDisplay('Math.sin(')">sin</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn function-btn w-100" onclick="appendToDisplay('Math.cos(')">cos</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn function-btn w-100" onclick="appendToDisplay('Math.tan(')">tan</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn function-btn w-100" onclick="appendToDisplay('Math.sqrt(')">√</button>
+                                </div>
+                                
+                                <!-- Second Row -->
+                                <div class="col-3">
+                                    <button class="calculator-btn btn function-btn w-100" onclick="appendToDisplay('Math.log(')">ln</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn function-btn w-100" onclick="appendToDisplay('Math.log10(')">log</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn function-btn w-100" onclick="appendToDisplay('Math.PI')">π</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn function-btn w-100" onclick="appendToDisplay('Math.pow(')">x^y</button>
+                                </div>
+                                
+                                <!-- Third Row -->
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('(')">(</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay(')')">)</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('%')">%</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn clear-btn w-100" onclick="clearDisplay()">AC</button>
+                                </div>
+                                
+                                <!-- Number Rows -->
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('7')">7</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('8')">8</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('9')">9</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn operator-btn w-100" onclick="appendToDisplay('/')">÷</button>
+                                </div>
+                                
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('4')">4</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('5')">5</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('6')">6</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn operator-btn w-100" onclick="appendToDisplay('*')">×</button>
+                                </div>
+                                
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('1')">1</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('2')">2</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('3')">3</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn operator-btn w-100" onclick="appendToDisplay('-')">-</button>
+                                </div>
+                                
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('0')">0</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn btn-light w-100" onclick="appendToDisplay('.')">.</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn equals-btn w-100" onclick="calculate()">=</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="calculator-btn btn operator-btn w-100" onclick="appendToDisplay('+')">+</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row gx-1">
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">(</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">)</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">%</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">AC</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">7</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">8</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">9</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">÷</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">4</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">5</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">6</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">*</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">1</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">2</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">3</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">-</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">0</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">.</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-primary w-100 mt-2 border border-primary">=</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-light w-100 mt-2 border">+</button>
-                        </div>
-                        
-                    </div>
-
                 </div>
             </div>
-         </div>
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-  </body>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+        <script>
+            const display = document.getElementById('calc-display');
+            let currentValue = "";
+            
+            function appendToDisplay(value) {
+                currentValue += value;
+                display.value = currentValue;
+            }
+            
+            function clearDisplay() {
+                currentValue = "";
+                display.value = "0";
+            }
+            
+            function calculate() {
+                try {
+                    // Replace display symbols with JavaScript operators
+                    let expression = currentValue
+                        .replace(/×/g, '*')
+                        .replace(/÷/g, '/')
+                        .replace(/%/g, '*0.01');
+                    
+                    // Evaluate the expression
+                    const result = eval(expression);
+                    
+                    // Display the result and store it for further calculations
+                    currentValue = result.toString();
+                    display.value = currentValue;
+                } catch (error) {
+                    display.value = "Error";
+                    currentValue = "";
+                }
+            }
+            
+            // Add keyboard support
+            document.addEventListener('keydown', function(event) {
+                const key = event.key;
+                
+                if (/[0-9+\-*/.%()]/.test(key)) {
+                    appendToDisplay(key);
+                } else if (key === 'Enter') {
+                    calculate();
+                } else if (key === 'Escape') {
+                    clearDisplay();
+                } else if (key === 'Backspace') {
+                    currentValue = currentValue.slice(0, -1);
+                    display.value = currentValue || "0";
+                }
+            });
+        </script>
     </body>
 </html>
